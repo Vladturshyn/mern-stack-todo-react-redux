@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-import Show from './InputShow'
 
 class Form extends Component {
   onAdd = e => {
     e.preventDefault();
     const form = document.querySelector('form');
-    const text = form.text.value;
-    this.props.canChangeStore(text);
+    const data = {
+      name: form.name.value,
+      text: form.text.value
+    }
+    console.log(data);
     form.reset();
   }
 
@@ -14,12 +16,14 @@ class Form extends Component {
     console.log(this.props)
     return (
       <div>
+        <h3> ToDo :</h3>
         <div>
           <form onSubmit={this.onAdd}>
-            <input name='text' type="text" />
+          <label>Name: </label>
+            <input name='name' type="text" /><br/>
+          <label>Text: </label>
+            <input name='text' type="text" /><br/>
             <button type='submit'>SUBMIT</button>
-
-            <Show data={this.props.propsFromStore} />
           </form>
         </div>
       </div>
