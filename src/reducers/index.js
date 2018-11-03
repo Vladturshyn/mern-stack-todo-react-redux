@@ -1,20 +1,39 @@
 import { combineReducers } from 'redux'
-import { ADD, SHOW} from '../actions/index'
 
-function reduserADD(state = [], action) {
+const initialState = {
+    todos:[],
+    todo:null,
+    isFetching: false,
+    error: null,
+    successMsg:null,
+    showDeleteModal: false,
+    todoToDelete: null,
+    showEditModal: false,
+    todoToEdit: null,
+    newTodo: null
+}
+
+const todoReducer = (state = initialState, action) => {
     switch (action.type) {
-      case ADD:
-        return [...state, action.text]
-      case SHOW:
-        return [...state]
-      default:
-        return state
-    }
-  }
-  
+        case 'ADD_NEW_TODO_REQUEST':
+            return {
+                ...state,
+                todos: state.todos,
+                todo: null,
+                isFetching: true,
+                error: null,
+                successMsg:null,
+                showDeleteModal: false,
+                todoToDelete: null,
+                showEditModal: false,
+                todoToEdit: null,
+                newTodo: action.todo
+        }
+
+}
 
 const combineReducerADD = combineReducers({
-    reduserADD
+    todoReducer
 })
   
-  export default combineReducerADD;
+export default combineReducerADD;

@@ -1,15 +1,8 @@
-export const ADD = 'ADD';
-export const SHOW = 'SHOW'
+export const ADD_NEW_TODO_REQUEST = 'ADD_NEW_TODO_REQUEST';
 
-export function addTodo(text) {
-    return { 
-        type: ADD, 
-        text 
-    }
-}
-export function showTodo(text) {
+export const addNewTodoRequest = (todo) => {
     return {
-        type: SHOW,
-        text
+      type: ADD_NEW_TODO_REQUEST,
+      todo
     }
-}
+  }

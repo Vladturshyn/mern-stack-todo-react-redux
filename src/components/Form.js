@@ -11,7 +11,7 @@ class Form extends Component {
   }
 
   render() {
-    console.log()
+    console.log(this.props)
     return (
       <div>
         <div>
