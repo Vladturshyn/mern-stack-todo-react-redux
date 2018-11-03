@@ -1,7 +1,10 @@
+import { ADD_NEW_TODO_REQUEST, 
+         ADD_NEW_TODO_REQUEST_SUCCESS, 
+         ADD_NEW_TODO_REQUEST_FAILED } from './actionTypes';
+
 const apiUrl = "/api/";
 
-// создали явный генератор действий для создания новой todo
-
+// Create an action generator to create a new todo
 export const addNewTodo = (todo) => {
     return (dispatch) => {
         dispatch(addNewTodoRequest(todo));
@@ -22,14 +25,14 @@ export const addNewTodo = (todo) => {
 
 export const addNewTodoRequest = (todo) => {
     return {
-      type: 'ADD_NEW_TODO_REQUEST',
+      type: ADD_NEW_TODO_REQUEST,
       todo
     }
 }
 
 export const addNewTodoRequestSuccess = (todo,message) => {
     return {
-      type: 'ADD_NEW_TODO_REQUEST_SUCCESS',
+      type: ADD_NEW_TODO_REQUEST_SUCCESS,
       todo:todo,
       message:message
     }
@@ -37,7 +40,7 @@ export const addNewTodoRequestSuccess = (todo,message) => {
 
 export const addNewTodoRequestFailed = (error) => {
     return {
-      type: 'ADD_NEW_TODO_REQUEST_FAILED',
+      type: ADD_NEW_TODO_REQUEST_FAILED,
       error
     }
 }
