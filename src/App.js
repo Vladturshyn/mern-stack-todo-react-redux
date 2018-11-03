@@ -1,14 +1,18 @@
 import React, { Component } from 'react'
-import ContainerForm from './containers/ContainerForm'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-// import combineReducerADD from './reducers'
+import configureStore from './store/configureStore'
 
+import ContainerForm from './containers/ContainerForm'
+
+
+const store = configureStore();
 
 class App extends Component {
   render() {
     return (
-       <ContainerForm />
+      <Provider store={store}>
+        <ContainerForm />
+      </Provider>
     );
   }
 }

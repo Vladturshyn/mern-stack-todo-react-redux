@@ -1,3 +1,7 @@
+import { ADD_NEW_TODO_REQUEST, 
+         ADD_NEW_TODO_REQUEST_SUCCESS, 
+         ADD_NEW_TODO_REQUEST_FAILED } from './actionTypes';
+
 const initialState = {
     todos: [],
     todo: null,
@@ -7,9 +11,9 @@ const initialState = {
     newTodo: null
 }
 
-export const todoReducer = (state = initialState, action) => {
+export const newtodoReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'ADD_NEW_TODO_REQUEST':
+        case ADD_NEW_TODO_REQUEST:
           return {
             ...state,
             todos: state.todos,
@@ -20,7 +24,7 @@ export const todoReducer = (state = initialState, action) => {
             newTodo: action.todo
           }
 
-        case 'ADD_NEW_TODO_REQUEST_FAILED':
+        case ADD_NEW_TODO_REQUEST_FAILED:
           return {
             ...state,
             todos: state.todos,
@@ -31,7 +35,7 @@ export const todoReducer = (state = initialState, action) => {
             newTodo: null
           }
 
-        case 'ADD_NEW_TODO_REQUEST_SUCCESS':
+        case ADD_NEW_TODO_REQUEST_SUCCESS:
           const nextState =  {
             ...state,
             todos: [...state.todos, action.todo],
