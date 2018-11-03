@@ -2,13 +2,13 @@ import { ADD_NEW_TODO_REQUEST,
          ADD_NEW_TODO_REQUEST_SUCCESS, 
          ADD_NEW_TODO_REQUEST_FAILED } from './actionTypes';
 
-const apiUrl = "/api/";
+const apiUrl = "http://localhost:3001/api";
 
 // Create an action generator to create a new todo
 export const addNewTodo = (todo) => {
     return (dispatch) => {
         dispatch(addNewTodoRequest(todo));
-        return fetch(apiUrl, {mathod: 'POST', body: todo})
+        return fetch(apiUrl,{method: 'POST', body: todo})
                 .then(response => {
                     if(response.ok){
                         response.json().then(data => {

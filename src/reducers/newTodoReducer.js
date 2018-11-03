@@ -1,6 +1,6 @@
 import { ADD_NEW_TODO_REQUEST, 
          ADD_NEW_TODO_REQUEST_SUCCESS, 
-         ADD_NEW_TODO_REQUEST_FAILED } from './actionTypes';
+         ADD_NEW_TODO_REQUEST_FAILED } from '../actions/actionTypes';
 
 const initialState = {
     todos: [],

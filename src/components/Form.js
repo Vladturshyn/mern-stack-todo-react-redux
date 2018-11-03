@@ -4,11 +4,13 @@ class Form extends Component {
   onAdd = e => {
     e.preventDefault();
     const form = document.querySelector('form');
-    const data = {
-      name: form.name.value,
-      text: form.text.value
+    if(form.name.value !== '' && form.text.value !== ''){
+      const data = {
+        name: form.name.value,
+        text: form.text.value
+      }
+      this.props.addNewTodo(data);
     }
-    console.log(data);
     form.reset();
   }
 
