@@ -1,11 +1,18 @@
-import React, { Component } from 'react';
-import Form from './components/TodoForm';
+import React, { Component } from 'react'
+import ContainerForm from './containers/ContainerForm'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import combineReducerADD from './reducers'
+
+let store = createStore(combineReducerADD)
+
 class App extends Component {
   render() {
+    console.log(store.getState())
     return (
-      <div className="App">
-        <Form />
-      </div>
+    <Provider store={store}>
+       <ContainerForm />
+    </Provider>
     );
   }
 }
