@@ -3,7 +3,8 @@ import { FETCH_TODOS_REQUEST,
          FETCH_TODOS_FAILED } from './actionTypes';
 
 
-const apiUrl = "http://localhost:3001/api";
+const apiUrl = "http://localhost:3000/api";
+
 // Fetch all todos
 // Returns a dispatcher function
 // that dispatches an action at later time
