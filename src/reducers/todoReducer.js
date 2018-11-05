@@ -4,6 +4,9 @@ import { ADD_NEW_TODO_REQUEST,
 import { FETCH_TODOS_REQUEST, 
          FETCH_TODOS_SUCCESS, 
          FETCH_TODOS_FAILED } from '../actions/actionTypes';
+import { DELETE_TODO_REQUEST, 
+         DELETE_TODO_SUCCESS, 
+         DELETE_TODO_FAILED } from '../actions/actionTypes';
 
 const initialState = {
     todos: [],
@@ -11,7 +14,9 @@ const initialState = {
     isFetching: false,
     error: null,
     successMsg: null,
-    newTodo: null
+    newTodo: null,
+    todoToDelete: null,
+    showDeleteModal: false
 }
 
 export const todoReducer = (state = initialState, action) => {
@@ -79,7 +84,64 @@ export const todoReducer = (state = initialState, action) => {
             error: action.error,
             successMsg:null,
           }
-
+        case DELETE_TODO_REQUEST:
+          return {
+            ...state,
+            todos: state.todos,
+            todo: null,
+            isFetching: true,
+            error: null,
+            successMsg: null,
+            todoToDelete: action.todo,
+            newTodo: null
+        }
+        case DELETE_TODO_SUCCESS:
+          const filteredTodos = state.todos.filter((todo) => todo._id !== state.todoToDelete._id)
+          return {
+            ...state,
+            todos: filteredTodos,
+            todo:null,
+            isFetching: false,
+            error: null,
+            successMsg: action.message,
+            todoToDelete: null,
+            newTodo: null
+          }
+        case DELETE_TODO_FAILED:
+          return {
+            ...state,
+            todos: state.todos,
+            todo: null,
+            isFetching: false,
+            error: action.error,
+            successMsg: null,
+            todoToDelete: null,
+            newTodo: null
+          }
+        case 'SHOW_DELETE_MODAL':
+          return {
+            ...state,
+            todos: state.todos,
+            todo:null,
+            isFetching: false,
+            error: null,
+            successMsg:null,
+            showDeleteModal: true,
+            todoToDelete: action.todo,
+            newTodo: null
+          }
+        case 'HIDE_DELETE_MODAL':
+              return {
+                ...state,
+                todos: state.todos,
+                todo:null,
+                isFetching: false,
+                error: null,
+                successMsg:null,
+                showDeleteModal: false,
+                todoToDelete: null,
+                newTodo: null
+              }
         default:
             return state;
     }    
