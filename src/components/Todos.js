@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import DeleteModal from './DeleteModal'
-//import Popup from 'reactjs-popup'
+import TodoEditForm from './TodoEditForm'
+import Popup from 'reactjs-popup'
 
 
 export default class Todos extends Component {
@@ -10,13 +11,33 @@ export default class Todos extends Component {
   showDeleteModal(todoToDelete){
     this.props.showDeleteModal(todoToDelete);
   }
+  showEditModal(todoToEdit){
+    this.props.showEditModal(todoToEdit);
+  }
+
+  closeEditModal(){
+      this.props.hideEditModal();
+  }
+
+ submitEditTodo=(e)=>{
+   e.preventDefault();
+   const editForm = document.getElementById('EditTodoForm');
+   if(editForm.text.value !== ""){
+     const data = new FormData();
+     data.append('id', editForm.id.value);
+    data.append('todoText', editForm.name.value);
+     data.append('todoDesc', editForm.text.value);
+     this.props.editTodo(data);
+   }
+ }
 
   render() {
     //console.log(this.props.state.todoReducer.showDeleteModal)
     const todoState = this.props.state.todoReducer;
     const todos = todoState.todos;
-    // const editTodo = todoState.todoToEdit;
-    // console.log(this.props.state.todoReducer.todoToDelete);
+    const editTodo = this.props.state.todoReducer.todoToEdit;
+
+    console.log(this.props.state.todoReducer.showEditModal);
     return (
       <div>
       <hr/>
@@ -43,6 +64,35 @@ export default class Todos extends Component {
           </table>} 
           </div>
           <DeleteModal props={this.props}/>
+          <Popup
+          open={this.props.state.todoReducer.showEditModal}
+          onClose={this.closeEditModal.bind(this)}
+          >
+            {close => (
+              <div>
+            <h3>Edit Your Todo</h3>
+            {editTodo && <TodoEditForm todoData={editTodo} editTodo={this.submitEditTodo} />}
+            {editTodo  && todoState.isFetching &&
+              <span>
+                <strong>Updating...... </strong>
+              </span>
+            }
+            {editTodo && !todoState.isFetching && todoState.error &&
+              <span>
+                <strong>Failed. {todoState.error} </strong>
+              </span>
+            }
+            {editTodo && !todoState.isFetching && todoState.successMsg &&
+              <span>
+                Book <strong> {editTodo.todoText} </strong>{todoState.successMsg}
+              </span>
+            }
+              <div>
+                <button onClick={this.closeEditModal.bind(this)}>Close</button>
+              </div>
+          </div>
+            )} 
+          </Popup>
       </div>
     )
   }

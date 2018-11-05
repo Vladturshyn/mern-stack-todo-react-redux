@@ -6,7 +6,13 @@ import { FETCH_TODOS_REQUEST,
          FETCH_TODOS_FAILED } from '../actions/actionTypes';
 import { DELETE_TODO_REQUEST, 
          DELETE_TODO_SUCCESS, 
-         DELETE_TODO_FAILED } from '../actions/actionTypes';
+         DELETE_TODO_FAILED,
+         SHOW_DELETE_MODAL,
+         HIDE_DELETE_MODAL} from '../actions/actionTypes';
+import { SHOW_EDIT_MODAL,
+         HIDE_EDIT_MODAL} from '../actions/actionTypes';
+      
+
 
 const initialState = {
     todos: [],
@@ -16,7 +22,9 @@ const initialState = {
     successMsg: null,
     newTodo: null,
     todoToDelete: null,
-    showDeleteModal: false
+    showDeleteModal: false,
+    showEditModal: false,
+    todoToEdit: null,
 }
 
 export const todoReducer = (state = initialState, action) => {
@@ -118,7 +126,7 @@ export const todoReducer = (state = initialState, action) => {
             todoToDelete: null,
             newTodo: null
           }
-        case 'SHOW_DELETE_MODAL':
+        case SHOW_DELETE_MODAL:
           return {
             ...state,
             todos: state.todos,
@@ -130,18 +138,47 @@ export const todoReducer = (state = initialState, action) => {
             todoToDelete: action.todo,
             newTodo: null
           }
-        case 'HIDE_DELETE_MODAL':
-              return {
-                ...state,
-                todos: state.todos,
-                todo:null,
-                isFetching: false,
-                error: null,
-                successMsg:null,
-                showDeleteModal: false,
-                todoToDelete: null,
-                newTodo: null
-              }
+        case HIDE_DELETE_MODAL:
+          return {
+            ...state,
+            todos: state.todos,
+            todo:null,
+            isFetching: false,
+            error: null,
+            successMsg:null,
+            showDeleteModal: false,
+            todoToDelete: null,
+            newTodo: null
+          }
+        case SHOW_EDIT_MODAL:
+          return {
+            ...state,
+            todos: state.todos,
+            todo:null,
+            isFetching: false,
+            error: null,
+            successMsg:null,
+            showDeleteModal: false,
+            todoToDelete: null,
+            showEditModal: true,
+            todoToEdit: action.todo,
+            newTodo: null
+          }
+        case HIDE_EDIT_MODAL:
+          return {
+            ...state,
+            todos: state.todos,
+            todo:null,
+            isFetching: false,
+            error: null,
+            successMsg:null,
+            showDeleteModal: false,
+            todoToDelete: null,
+            showEditModal: false,
+            todoToEdit: null,
+            newTodo: null
+          }
+
         default:
             return state;
     }    

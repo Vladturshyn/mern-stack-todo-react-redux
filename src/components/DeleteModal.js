@@ -18,9 +18,9 @@ export default class DeleteModal extends Component {
         onClose={this.closeDeleteModal.bind(this)}
         >
           {close => (
-              <div className="modal">
-                <div className="header"> Modal Title </div>
-                <div className="actions">
+              <div>
+                <div> Modal Title </div>
+                <div>
                 {todoState.todoToDelete && !todoState.error && !todoState.isFetching &&
             <span>
             Are you sure you want to delete this todo <strong>{todoState.todoToDelete.todoText} </strong> ?

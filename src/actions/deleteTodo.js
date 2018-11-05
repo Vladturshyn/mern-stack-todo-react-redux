@@ -1,6 +1,8 @@
 import { DELETE_TODO_REQUEST, 
          DELETE_TODO_SUCCESS, 
-         DELETE_TODO_FAILED } from '../actions/actionTypes';
+         DELETE_TODO_FAILED,
+         SHOW_DELETE_MODAL,
+         HIDE_DELETE_MODAL} from '../actions/actionTypes';
 
 const apiUrl = "/api/";
 
@@ -44,13 +46,13 @@ export const deleteTodoFailed = (error) => {
 }
 export const showDeleteModal = (todoToDelete) => {
     return {
-      type:'SHOW_DELETE_MODAL',
+      type: SHOW_DELETE_MODAL,
       todo:todoToDelete
     }
   }
   
   export const hideDeleteModal = () => {
     return {
-      type:'HIDE_DELETE_MODAL'
+      type: HIDE_DELETE_MODAL
     }
   }
