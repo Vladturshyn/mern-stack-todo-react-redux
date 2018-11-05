@@ -2,62 +2,70 @@ import React, { Component } from 'react'
 import Popup from 'reactjs-popup'
 
 export default class DeleteModal extends Component {
-    
-      hideDeleteModal(){
-        this.props.mappedhideDeleteModal();
-      }
-    
-      showDeleteModal(todoToDelete){
-        this.props.mappedshowDeleteModal(todoToDelete);
-      }
-    
-      cofirmDeleteTodo(){
-        this.props.mappedDeleteTodo(this.props.mappedTodoState.todoToDelete);
-      }
+  closeDeleteModal(){
+    this.props.props.hideDeleteModal();
+  }
+  cofirmDeleteTodo(){
+    this.props.props.deleteTodo(this.props.props.state.todoReducer.todoToDelete);
+  }
 
     render() {
-        const a = this.props.state.todoReducer.showDeleteModal;
+        const todoState = this.props.props.state.todoReducer;
       return (
       <div>
-        <Popup trigger={a} modal>
-
-            <h1 id="contained-modal-title">Delete Your Book</h1>
-            <div>
-            {/* {todoState.todoToDelete && !todoState.error && !todoState.isFetching &&
-            <span bsStyle="warning">
+        <Popup
+        open={this.props.props.state.todoReducer.showDeleteModal}
+        onClose={this.closeDeleteModal.bind(this)}
+        >
+          {close => (
+              <div className="modal">
+                <div className="header"> Modal Title </div>
+                <div className="actions">
+                {todoState.todoToDelete && !todoState.error && !todoState.isFetching &&
+            <span>
             Are you sure you want to delete this todo <strong>{todoState.todoToDelete.todoText} </strong> ?
             </span>
             }
             {todoState.todoToDelete && todoState.error &&
-            <span bsStyle="warning">
+            <span>
             Failed. <strong>{todoState.error} </strong>
             </span>
             }
-
             {todoState.todoToDelete && !todoState.error && todoState.isFetching &&
-            <span bsStyle="success">
+            <span>
                     <strong>Deleting.... </strong>
                 </span>
             }
-
             {!todoState.todoToDelete && !todoState.error && !todoState.isFetching&&
-            <span bsStyle="success">
+            <span>
                     Todo <strong>{todoState.successMsg} </strong>
             </span>
-            }
-            </div>
+            }{!todoState.todoToDelete && !todoState.error && !todoState.isFetching&&
+              <span>
+                      Todo <strong>{todoState.successMsg} </strong>
+              </span>
+              }
+              {!todoState.successMsg && !todoState.isFetching &&
             <div>
-            {!todoState.successMsg && !todoState.isFetching &&
-            <div>
-            <button onClick={this.cofirmDeleteTodo}>Yes</button>
-            <button onClick={this.hideDeleteModal}>No</button>
+            <button onClick={this.cofirmDeleteTodo.bind(this)}>Yes</button>
+            <button onClick={this.closeDeleteModal.bind(this)}>No</button>
             </div>
             }
             {todoState.successMsg && !todoState.isFetching &&
-            <button onClick={this.hideDeleteModal}>Close</button>
-            } */}
-        </div>
-     </Popup>
+            <button onClick={this.closeDeleteModal.bind(this)}>Close</button>
+            }
+                  <button
+                    className="button"
+                    onClick={() => {
+                      this.closeDeleteModal()
+                    }}
+                  >
+                    close modal
+                  </button>
+                </div>
+              </div>
+            )}
+      </Popup>
     </div>
     )
   }

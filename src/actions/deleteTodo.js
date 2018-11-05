@@ -8,7 +8,7 @@ export const deleteTodo = (todo) => {
     return (dispatch) => {
         dispatch(deleteTodoRequest(todo));
         return fetch(apiUrl + todo._id ,{method:'DELETE'})
-            .then(response => {
+        .then(response => {
                 if(response.ok){
                     response.json().then(data => {
                     dispatch(deleteTodoSuccess(data.message));
