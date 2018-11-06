@@ -3,18 +3,18 @@ import Popup from 'reactjs-popup'
 
 export default class DeleteModal extends Component {
   closeDeleteModal(){
-    this.props.props.hideDeleteModal();
+    this.props.todoData.hideDeleteModal();
   }
   cofirmDeleteTodo(){
-    this.props.props.deleteTodo(this.props.props.state.todoReducer.todoToDelete);
+    this.props.todoData.deleteTodo(this.props.todoData.mappedState.todoToDelete);
   }
 
     render() {
-        const todoState = this.props.props.state.todoReducer;
+        const todoState = this.props.todoData.mappedState;
       return (
       <div>
         <Popup
-        open={this.props.props.state.todoReducer.showDeleteModal}
+        open={this.props.todoData.mappedState.showDeleteModal}
         onClose={this.closeDeleteModal.bind(this)}
         >
           {close => (

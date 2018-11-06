@@ -6,7 +6,7 @@ import { showEditModal, hideEditModal, editTodo } from '../actions/editTodo';
 
 const mapStateToProps = (state) => {
     return {
-        state: state
+        mappedState: state.todoReducer
   }
 }
 

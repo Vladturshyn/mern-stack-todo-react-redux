@@ -5,21 +5,22 @@ import TodoEditForm from './TodoEditForm'
 
 export default class EditModal extends Component {
     closeEditModal(){
-        this.props.props.hideEditModal();
+        this.props.todoData.hideEditModal();
     }
   render() {
-    const editTodo = this.props.props.state.todoReducer.todoToEdit;
-    const todoState = this.props.props.state.todoReducer;
+    const editTodo = this.props.todoData.mappedState.todoToEdit;
+    const todoState = this.props.todoData.mappedState;
+    console.log(this.props.todoData.editTodo)
     return (
       <div>
         <Popup
-          open={this.props.props.state.todoReducer.showEditModal}
+          open={this.props.todoData.mappedState.showEditModal}
           onClose={this.closeEditModal.bind(this)}
           >
             {close => (
               <div>
             <h3>Edit Your Todo</h3>
-            {editTodo && <TodoEditForm todoData={editTodo} editTodo={this.props.props} />}
+            {editTodo && <TodoEditForm todoData={editTodo} editTodo={this.props.todoData.editTodo} />}
             {editTodo  && todoState.isFetching &&
               <span>
                 <strong>Updating...... </strong>

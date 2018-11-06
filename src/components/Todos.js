@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import DeleteModal from './DeleteModal'
-import EditModal from './EditModal'
+import React, { Component } from 'react';
+import DeleteModal from './DeleteModal';
+import EditModal from './EditModal';
 
 
 export default class Todos extends Component {
@@ -13,9 +13,9 @@ export default class Todos extends Component {
   showEditModal(todoToEdit){
     this.props.showEditModal(todoToEdit);
   }
-  
+
   render() {
-    const todoState = this.props.state.todoReducer;
+    const todoState = this.props.mappedState;
     const todos = todoState.todos;
     return (
       <div>
@@ -42,8 +42,8 @@ export default class Todos extends Component {
             </tbody>
           </table>} 
           </div>
-          <DeleteModal props={this.props}/>
-          <EditModal props={this.props}/>
+          <DeleteModal todoData={this.props}/>
+          <EditModal todoData={this.props}/>
       </div>
     )
   }

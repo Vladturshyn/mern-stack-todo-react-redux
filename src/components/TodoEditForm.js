@@ -9,7 +9,7 @@ export default class TodoEditForm extends Component {
           data.append('id', editForm.id.value);
           data.append('todoText', editForm.name.value);
           data.append('todoDesc', editForm.text.value);
-          this.props.editTodo.editTodo(data);
+          this.props.editTodo(data);
         }
     }
   render() {

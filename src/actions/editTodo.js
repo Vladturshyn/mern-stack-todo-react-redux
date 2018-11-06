@@ -2,6 +2,7 @@ import * as actionTypes from './actionTypes';
 
 const apiUrl = "/api/";
 
+// Edit todo
 export const editTodo = (todo) => {
     return (dispatch) => {
         dispatch(editTodoRequest(todo));

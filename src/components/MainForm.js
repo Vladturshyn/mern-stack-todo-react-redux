@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class Form extends Component {
+class MainForm extends Component {
   onAdd = e => {
     e.preventDefault();
     const form = document.querySelector('form');
@@ -15,6 +15,7 @@ class Form extends Component {
   }
 
   render() {
+    console.log(this.props.mappedState,'dfsdfs')
     return (
       <div>
         <h3> ToDo :</h3>
@@ -34,4 +35,4 @@ class Form extends Component {
 
 
 
-export default Form;
+export default MainForm;
