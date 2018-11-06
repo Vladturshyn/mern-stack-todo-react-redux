@@ -1,13 +1,10 @@
-import { ADD_NEW_TODO_REQUEST, 
-         ADD_NEW_TODO_REQUEST_SUCCESS, 
-         ADD_NEW_TODO_REQUEST_FAILED } from './actionTypes';
+import * as actionTypes from './actionTypes';
 
-const apiUrl = "http://localhost:3000/api";
+const apiUrl = "/api";
 
 // Create an action generator to create a new todo
 // Add New ToDo
 export const addNewTodo = (todo) => {
-    console.log(todo);
     return (dispatch) => {
         dispatch(addNewTodoRequest(todo));
         return fetch(apiUrl, {method:'POST', body:todo})
@@ -27,22 +24,22 @@ export const addNewTodo = (todo) => {
 
 export const addNewTodoRequest = (todo) => {
     return {
-      type: ADD_NEW_TODO_REQUEST,
-      todo
+        type: actionTypes.ADD_NEW_TODO_REQUEST,
+        todo
     }
 }
 
 export const addNewTodoRequestSuccess = (todo,message) => {
     return {
-      type: ADD_NEW_TODO_REQUEST_SUCCESS,
-      todo: todo,
-      message: message
+        type: actionTypes.ADD_NEW_TODO_REQUEST_SUCCESS,
+        todo: todo,
+        message: message
     }
 }
 
 export const addNewTodoRequestFailed = (error) => {
     return {
-      type: ADD_NEW_TODO_REQUEST_FAILED,
-      error
+        type: actionTypes.ADD_NEW_TODO_REQUEST_FAILED,
+        error
     }
 }
