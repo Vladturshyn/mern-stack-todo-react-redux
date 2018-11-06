@@ -10,7 +10,10 @@ import { DELETE_TODO_REQUEST,
          SHOW_DELETE_MODAL,
          HIDE_DELETE_MODAL} from '../actions/actionTypes';
 import { SHOW_EDIT_MODAL,
-         HIDE_EDIT_MODAL} from '../actions/actionTypes';
+         HIDE_EDIT_MODAL,
+         EDIT_TODO_REQUEST,
+         EDIT_TODO_SUCCESS,
+         EDIT_TODO_FAILED} from '../actions/actionTypes';
       
 
 
@@ -176,6 +179,57 @@ export const todoReducer = (state = initialState, action) => {
             todoToDelete: null,
             showEditModal: false,
             todoToEdit: null,
+            newTodo: null
+          }
+        case EDIT_TODO_REQUEST:
+          return {
+            ...state,
+            todos: state.todos,
+            todo:null,
+            isFetching: true,
+            error: null,
+            successMsg:null,
+            showDeleteModal: false,
+            todoToDelete: null,
+            showEditModal: true,
+            todoToEdit: action.todo,
+            newTodo: null
+          }
+        case EDIT_TODO_SUCCESS:
+          const updatedTodos = state.todos.map((todo) => {
+            if(todo._id !== action.todo._id){
+             //This is not the item we care about, keep it as is
+              return todo;
+            }
+           //Otherwise, this is the one we want to return an updated value
+            return { ...todo, ...action.todo }
+          })
+          return {
+            ...state,
+            todos: updatedTodos,
+            todo:null,
+            isFetching: false,
+            error: null,
+            successMsg:action.message,
+            showDeleteModal: false,
+            todoToDelete: null,
+            showEditModal: true,
+            todoToEdit: action.todo,
+            newTodo: null
+          }
+
+        case EDIT_TODO_FAILED:
+          return {
+            ...state,
+            todos: state.todos,
+            todo:null,
+            isFetching: false,
+            error: action.error,
+            successMsg:null,
+            showDeleteModal: false,
+            todoToDelete: null,
+            showEditModal: true,
+            todoToEdit: state.todoToEdit,
             newTodo: null
           }
 

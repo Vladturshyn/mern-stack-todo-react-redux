@@ -1,43 +1,44 @@
-import { SHOW_EDIT_MODAL,HIDE_EDIT_MODAL } from './actionTypes';
+import { SHOW_EDIT_MODAL,
+         HIDE_EDIT_MODAL,
+         EDIT_TODO_REQUEST,
+         EDIT_TODO_SUCCESS,
+         EDIT_TODO_FAILED} from './actionTypes';
 
 const apiUrl = "/api/";
 
 export const editTodo = (todo) => {
-    return (dispatch) => {
-      dispatch(editTodoRequest(todo));
-      return fetch(apiUrl, {
-        method:'put',
-        body:todo
-      }).then(response => {
-        if(response.ok){
-          response.json().then(data => {
-            dispatch(editTodoSuccess(data.todo,data.message));
-          })
-        }
-        else{
-          response.json().then(error => {
-            dispatch(editTodoFailed(error));
-          })
-        }
-      })
-    }
+  return (dispatch) => {
+    dispatch(editTodoRequest(todo));
+    return fetch(apiUrl, {method:'put',body:todo})
+      .then(response => {
+          if(response.ok){
+            response.json().then(data => {
+              dispatch(editTodoSuccess(data.todo,data.message));
+            })
+          }else{
+            response.json().then(error => {
+              dispatch(editTodoFailed(error));
+            })
+          }
+      })  
+  } 
 }
 export const editTodoRequest = (todo) => {
     return {
-      type:'EDIT_TODO_REQUEST',
+      type: EDIT_TODO_REQUEST,
       todo
     }
  }
  export const editTodoSuccess = (todo,message) => {
     return {
-      type:'EDIT_TODO_SUCCESS',
+      type: EDIT_TODO_SUCCESS,
       todo:todo,
       message:message
     }
   }
 export const editTodoFailed = (error) => {
     return {
-      type:'EDIT_TODO_FAILED',
+      type: EDIT_TODO_FAILED,
       error
     }
 }
