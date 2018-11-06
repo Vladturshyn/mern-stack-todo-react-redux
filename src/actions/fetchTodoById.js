@@ -1,5 +1,8 @@
+import * as actionTypes from './actionTypes';
+
 const apiUrl = "/api/";
 
+//Fetch todo by Id
 export const fetchTodoById = (todoId) => {
     return (dispatch) => {
         dispatch(fetchTodoRequest());
@@ -7,7 +10,7 @@ export const fetchTodoById = (todoId) => {
             .then(response => {
                 if(response.ok){
                     response.json().then(data => {
-                        dispatch(fetchTodoSuccess(data.todo, data.message));
+                        dispatch(fetchTodoSuccess(data.todo[0],data.message));
                     })
                 }else{
                     response.json().then(error => {
@@ -18,24 +21,24 @@ export const fetchTodoById = (todoId) => {
     }
 }
   
-  export const fetchTodoRequest = () => {
+export const fetchTodoRequest = () => {
     return {
-      type:'FETCH_TODO_REQUEST'
+      type: actionTypes.FETCH_TODO_REQUEST
     }
-  }
+}
   
-  export const fetchTodoSuccess = (todo,message) => {
+export const fetchTodoSuccess = (todo,message) => {
     return {
-      type: 'FETCH_TODO_SUCCESS',
+      type: actionTypes.FETCH_TODO_SUCCESS,
       todo: todo,
       message: message,
       receivedAt: Date.now
     }
-  }
+}
   
-  export const fetchTodoFailed = (error) => {
+export const fetchTodoFailed = (error) => {
     return {
-      type:'FETCH_TODO_FAILED',
+      type: actionTypes.FETCH_TODO_FAILED,
       error
     }
-  }
+}

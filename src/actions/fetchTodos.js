@@ -1,9 +1,6 @@
-import { FETCH_TODOS_REQUEST, 
-         FETCH_TODOS_SUCCESS, 
-         FETCH_TODOS_FAILED } from './actionTypes';
+import * as actionTypes from './actionTypes';
 
-
-const apiUrl = "http://localhost:3000/api";
+const apiUrl = "/api";
 
 // Fetch all todos
 // Returns a dispatcher function
@@ -29,13 +26,13 @@ export const fetchTodos = () => {
 
 export const fetchTodosRequest = () => {
     return {
-      type: FETCH_TODOS_REQUEST
+      type: actionTypes.FETCH_TODOS_REQUEST
     }
 }
   
 export const fetchTodosSuccess = (todos,message) => {
     return {
-      type: FETCH_TODOS_SUCCESS,
+      type: actionTypes.FETCH_TODOS_SUCCESS,
       todos: todos,
       message: message,
       receivedAt: Date.now
@@ -44,7 +41,7 @@ export const fetchTodosSuccess = (todos,message) => {
 
 export const fetchTodosFailed = (error) => {
     return {
-      type: FETCH_TODOS_FAILED,
+      type: actionTypes.FETCH_TODOS_FAILED,
       error
     }
 }

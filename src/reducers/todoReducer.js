@@ -1,25 +1,4 @@
-import { ADD_NEW_TODO_REQUEST, 
-         ADD_NEW_TODO_REQUEST_SUCCESS, 
-         ADD_NEW_TODO_REQUEST_FAILED } from '../actions/actionTypes';
-import { FETCH_TODOS_REQUEST, 
-         FETCH_TODOS_SUCCESS, 
-         FETCH_TODOS_FAILED } from '../actions/actionTypes';
-import { DELETE_TODO_REQUEST, 
-         DELETE_TODO_SUCCESS, 
-         DELETE_TODO_FAILED,
-         SHOW_DELETE_MODAL,
-         HIDE_DELETE_MODAL} from '../actions/actionTypes';
-import { SHOW_EDIT_MODAL,
-         HIDE_EDIT_MODAL,
-         EDIT_TODO_REQUEST,
-         EDIT_TODO_SUCCESS,
-         EDIT_TODO_FAILED} from '../actions/actionTypes';
-
-import {FETCH_TODO_REQUEST,
-        FETCH_TODO_SUCCESS,
-        FETCH_TODO_FAILED} from '../actions/actionTypes';
-      
-
+import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
     todos: [],
@@ -36,7 +15,7 @@ const initialState = {
 
 export const todoReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_NEW_TODO_REQUEST:
+        case actionTypes.ADD_NEW_TODO_REQUEST:
           return {
             ...state,
             todos: state.todos,
@@ -47,7 +26,7 @@ export const todoReducer = (state = initialState, action) => {
             newTodo: action.todo
           }
 
-        case ADD_NEW_TODO_REQUEST_FAILED:
+        case actionTypes.ADD_NEW_TODO_REQUEST_FAILED:
           return {
             ...state,
             todos: state.todos,
@@ -58,7 +37,7 @@ export const todoReducer = (state = initialState, action) => {
             newTodo: null
           }
 
-        case ADD_NEW_TODO_REQUEST_SUCCESS:
+        case actionTypes.ADD_NEW_TODO_REQUEST_SUCCESS:
           const nextState = {
             ...state,
             todos: [...state.todos, action.todo],
@@ -70,7 +49,7 @@ export const todoReducer = (state = initialState, action) => {
           }
           return nextState;
 
-        case FETCH_TODOS_REQUEST:
+        case actionTypes.FETCH_TODOS_REQUEST:
           return {
             ...state,
             todos:[],
@@ -80,7 +59,7 @@ export const todoReducer = (state = initialState, action) => {
             successMsg:null,
           }
 
-        case FETCH_TODOS_SUCCESS:
+        case actionTypes.FETCH_TODOS_SUCCESS:
           return {
             ...state,
             todos:action.todos,
@@ -90,7 +69,7 @@ export const todoReducer = (state = initialState, action) => {
             successMsg:action.message,
           }
 
-        case FETCH_TODOS_FAILED:
+        case actionTypes.FETCH_TODOS_FAILED:
           return {
             ...state,
             todos:[],
@@ -99,7 +78,8 @@ export const todoReducer = (state = initialState, action) => {
             error: action.error,
             successMsg:null,
           }
-        case FETCH_TODO_REQUEST:
+
+        case actionTypes.FETCH_TODO_REQUEST:
           return {
             ...state,
             todos: state.todos,
@@ -113,7 +93,7 @@ export const todoReducer = (state = initialState, action) => {
             todoToEdit: null,
           }
 
-        case FETCH_TODO_SUCCESS:
+        case actionTypes.FETCH_TODO_SUCCESS:
           return {
             ...state,
             todos: state.todos,
@@ -127,7 +107,7 @@ export const todoReducer = (state = initialState, action) => {
             todoToEdit: null,
           }
 
-        case FETCH_TODO_FAILED:
+        case actionTypes.FETCH_TODO_FAILED:
           return {
             ...state,
             todos:[],
@@ -141,7 +121,7 @@ export const todoReducer = (state = initialState, action) => {
             todoToEdit: null,
           }
 
-        case DELETE_TODO_REQUEST:
+        case actionTypes.DELETE_TODO_REQUEST:
           return {
             ...state,
             todos: state.todos,
@@ -151,8 +131,9 @@ export const todoReducer = (state = initialState, action) => {
             successMsg: null,
             todoToDelete: action.todo,
             newTodo: null
-        }
-        case DELETE_TODO_SUCCESS:
+          }
+
+        case actionTypes.DELETE_TODO_SUCCESS:
           const filteredTodos = state.todos.filter((todo) => todo._id !== state.todoToDelete._id)
           return {
             ...state,
@@ -164,7 +145,8 @@ export const todoReducer = (state = initialState, action) => {
             todoToDelete: null,
             newTodo: null
           }
-        case DELETE_TODO_FAILED:
+
+        case actionTypes.DELETE_TODO_FAILED:
           return {
             ...state,
             todos: state.todos,
@@ -175,7 +157,8 @@ export const todoReducer = (state = initialState, action) => {
             todoToDelete: null,
             newTodo: null
           }
-        case SHOW_DELETE_MODAL:
+
+        case actionTypes.SHOW_DELETE_MODAL:
           return {
             ...state,
             todos: state.todos,
@@ -187,7 +170,8 @@ export const todoReducer = (state = initialState, action) => {
             todoToDelete: action.todo,
             newTodo: null
           }
-        case HIDE_DELETE_MODAL:
+
+        case actionTypes.HIDE_DELETE_MODAL:
           return {
             ...state,
             todos: state.todos,
@@ -199,7 +183,8 @@ export const todoReducer = (state = initialState, action) => {
             todoToDelete: null,
             newTodo: null
           }
-        case SHOW_EDIT_MODAL:
+
+        case actionTypes.SHOW_EDIT_MODAL:
           return {
             ...state,
             todos: state.todos,
@@ -213,7 +198,8 @@ export const todoReducer = (state = initialState, action) => {
             todoToEdit: action.todo,
             newTodo: null
           }
-        case HIDE_EDIT_MODAL:
+
+        case actionTypes.HIDE_EDIT_MODAL:
           return {
             ...state,
             todos: state.todos,
@@ -227,7 +213,8 @@ export const todoReducer = (state = initialState, action) => {
             todoToEdit: null,
             newTodo: null
           }
-        case EDIT_TODO_REQUEST:
+
+        case actionTypes.EDIT_TODO_REQUEST:
           return {
             ...state,
             todos: state.todos,
@@ -241,7 +228,8 @@ export const todoReducer = (state = initialState, action) => {
             todoToEdit: action.todo,
             newTodo: null
           }
-        case EDIT_TODO_SUCCESS:
+          
+        case actionTypes.EDIT_TODO_SUCCESS:
           const updatedTodos = state.todos.map((todo) => {
             if(todo._id !== action.todo._id){
              //This is not the item we care about, keep it as is
@@ -264,7 +252,7 @@ export const todoReducer = (state = initialState, action) => {
             newTodo: null
           }
 
-        case EDIT_TODO_FAILED:
+        case actionTypes.EDIT_TODO_FAILED:
           return {
             ...state,
             todos: state.todos,

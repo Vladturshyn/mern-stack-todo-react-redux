@@ -1,17 +1,6 @@
-import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Form from '../components/Form'
-import {addNewTodo} from '../actions/addNewTodo'
-
-class ContainerForm extends Component {
-    render() {
-        return (
-        <div>
-            <Form addNewTodo={this.props.addNewTodo} state={this.props.state}/>
-        </div>
-    )
-  }
-}
+import { addNewTodo } from '../actions/addNewTodo'
 
 const mapStateToProps = (state) => {
     return {
@@ -25,4 +14,4 @@ const mapStateToProps = (state) => {
     }
   }
   
-export default connect(mapStateToProps,mapDispatchToProps)(ContainerForm);
+export default connect(mapStateToProps,mapDispatchToProps)(Form);
