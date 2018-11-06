@@ -3,8 +3,8 @@ import { Provider } from 'react-redux'
 import configureStore from './store/configureStore'
 
 import ContainerForm from './containers/ContainerForm'
-import ContainerTodos from './containers/ContainerTodos';
-
+import ContainerTodos from './containers/ContainerTodos'
+import ContainerTodoById from './containers/ContainerTodoById'
 
 const store = configureStore();
 
@@ -15,6 +15,7 @@ class App extends Component {
         <div>
           <ContainerForm />
           <ContainerTodos />
+          <ContainerTodoById />
         </div>
       </Provider>
     );

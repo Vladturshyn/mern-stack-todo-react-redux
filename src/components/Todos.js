@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import DeleteModal from './DeleteModal'
 import TodoEditForm from './TodoEditForm'
 import Popup from 'reactjs-popup'
+import {Link} from 'react-router'
 
 
 export default class Todos extends Component {
@@ -25,7 +26,7 @@ export default class Todos extends Component {
    if(editForm.text.value !== ""){
      const data = new FormData();
      data.append('id', editForm.id.value);
-    data.append('todoText', editForm.name.value);
+     data.append('todoText', editForm.name.value);
      data.append('todoDesc', editForm.text.value);
      this.props.editTodo(data);
    }
@@ -58,7 +59,7 @@ export default class Todos extends Component {
                     <td style={{border: "2px solid #2e8b57"}}><button onClick={() => this.showEditModal(todo)}>edit</button></td>
                     <td style={{border: "2px solid #2e8b57"}}><button onClick={() => this.showDeleteModal(todo)}>delete</button></td>
                     {/* viwe details */}
-                    <td className="textCenter">View Details</td>
+                    <td><Link to={`/${todo._id}`}>View Details</Link></td>
                 </tr> )}
             </tbody>
           </table>} 

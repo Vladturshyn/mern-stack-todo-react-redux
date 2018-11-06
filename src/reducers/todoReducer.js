@@ -14,6 +14,10 @@ import { SHOW_EDIT_MODAL,
          EDIT_TODO_REQUEST,
          EDIT_TODO_SUCCESS,
          EDIT_TODO_FAILED} from '../actions/actionTypes';
+
+import {FETCH_TODO_REQUEST,
+        FETCH_TODO_SUCCESS,
+        FETCH_TODO_FAILED} from '../actions/actionTypes';
       
 
 
@@ -95,6 +99,48 @@ export const todoReducer = (state = initialState, action) => {
             error: action.error,
             successMsg:null,
           }
+        case FETCH_TODO_REQUEST:
+          return {
+            ...state,
+            todos: state.todos,
+            todo:null,
+            isFetching: true,
+            error: null,
+            successMsg:null,
+            showDeleteModal: false,
+            todoToDelete: null,
+            showEditModal: false,
+            todoToEdit: null,
+          }
+
+        case FETCH_TODO_SUCCESS:
+          return {
+            ...state,
+            todos: state.todos,
+            todo:action.todo,
+            isFetching: false,
+            error: null,
+            successMsg: action.message,
+            showDeleteModal: false,
+            todoToDelete: null,
+            showEditModal: false,
+            todoToEdit: null,
+          }
+
+        case FETCH_TODO_FAILED:
+          return {
+            ...state,
+            todos:[],
+            todo:null,
+            isFetching: false,
+            error: action.error,
+            successMsg:null,
+            showDeleteModal: false,
+            todoToDelete: null,
+            showEditModal: false,
+            todoToEdit: null,
+          }
+
         case DELETE_TODO_REQUEST:
           return {
             ...state,
