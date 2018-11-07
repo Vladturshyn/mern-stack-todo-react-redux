@@ -3,15 +3,16 @@ import thunk from 'redux-thunk';
 import rootReducers from '../reducers';
 
 export default function configureStore(initialState) {
-  const middlewares = [
-    thunk,
-  ];
+  const middlewares = [thunk];
 
-  const store = createStore(rootReducers, initialState, compose(
-    applyMiddleware(...middlewares),
-    window.devToolsExtension ? window.devToolsExtension() : f => f // add support for Redux dev tools
+  const store = createStore(
+    rootReducers,
+    initialState,
+    compose(
+      applyMiddleware(...middlewares),
+      window.devToolsExtension ? window.devToolsExtension() : f => f // add support for Redux dev tools
     )
   );
-  
+
   return store;
 }
