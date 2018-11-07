@@ -2,11 +2,12 @@ import React from 'react';
 
 export default class TodoById extends React.Component {
   componentDidMount(){
-    this.props.fetchTodoById("5be1be6afa451cdfdc7fb84c");
+    this.props.fetchTodoById(this.props.params.id);
   }
 
   render(){
     const todoState = this.props.mappedState;
+    console.log(this.props.params.id)
     return(
       <div>
        <h2>Todo Detail</h2>

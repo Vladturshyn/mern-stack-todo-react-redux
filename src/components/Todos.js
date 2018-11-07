@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import DeleteModal from './DeleteModal';
 import EditModal from './EditModal';
 
@@ -37,7 +38,7 @@ export default class Todos extends Component {
                     <td style={{border: "2px solid #2e8b57"}}><button onClick={() => this.showEditModal(todo)}>edit</button></td>
                     <td style={{border: "2px solid #2e8b57"}}><button onClick={() => this.showDeleteModal(todo)}>delete</button></td>
                     {/* viwe details */}
-                    <td>View Details</td>
+                    <td><Link to={`/${todo._id}`}>View Details</Link></td>
                 </tr> )}
             </tbody>
           </table>} 

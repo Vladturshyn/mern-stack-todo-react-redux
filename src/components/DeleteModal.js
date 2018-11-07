@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import Popup from 'reactjs-popup'
+import React, { Component } from 'react';
+import Popup from 'reactjs-popup';
 
 export default class DeleteModal extends Component {
   closeDeleteModal(){

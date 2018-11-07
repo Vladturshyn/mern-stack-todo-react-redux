@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Popup from 'reactjs-popup';
-import TodoEditForm from './TodoEditForm'
+import TodoEditForm from './TodoEditForm';
 
 
 export default class EditModal extends Component {
@@ -10,7 +10,6 @@ export default class EditModal extends Component {
   render() {
     const editTodo = this.props.todoData.mappedState.todoToEdit;
     const todoState = this.props.todoData.mappedState;
-    console.log(this.props.todoData.editTodo)
     return (
       <div>
         <Popup

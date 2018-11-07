@@ -1,4 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router';
+import ContainerMainForm from '../containers/ContainerMainForm';
+import ContainerTodos from '../containers/ContainerTodos';
 
 class MainForm extends Component {
   onAdd = e => {
@@ -15,9 +18,12 @@ class MainForm extends Component {
   }
 
   render() {
-    console.log(this.props.mappedState,'dfsdfs')
     return (
+
       <div>
+        <div>
+          <Link>ALL</Link>
+        </div>
         <h3> ToDo :</h3>
         <div>
           <form onSubmit={this.onAdd}>
