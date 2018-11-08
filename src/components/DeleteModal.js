@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Popup from 'reactjs-popup';
 
+import './style.scss';
+
 export default class DeleteModal extends Component {
   closeDeleteModal() {
     this.props.todoData.hideDeleteModal();
@@ -18,10 +20,11 @@ export default class DeleteModal extends Component {
         <Popup
           open={this.props.todoData.mappedState.showDeleteModal}
           onClose={this.closeDeleteModal.bind(this)}
+          className="Popup"
         >
           {close => (
             <div>
-              <div> Modal Title </div>
+              <h3> DELETE YOUR TODO </h3>
               <div>
                 {todoState.todoToDelete &&
                   !todoState.error &&
@@ -78,7 +81,7 @@ export default class DeleteModal extends Component {
                     this.closeDeleteModal();
                   }}
                 >
-                  close modal
+                  close
                 </button>
               </div>
             </div>

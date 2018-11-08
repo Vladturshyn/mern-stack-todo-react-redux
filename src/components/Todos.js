@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 import DeleteModal from './DeleteModal';
 import EditModal from './EditModal';
 
+import './style.scss';
+
 export default class Todos extends Component {
   componentWillMount() {
     this.props.fetchTodos();
@@ -19,19 +21,19 @@ export default class Todos extends Component {
     const todos = todoState.todos;
     return (
       <div>
-        <div>
-          <Link to={`/`}>Home </Link>
-          <Link to={`/todos`}> Todos</Link>
+        <div className="header">
+          <Link to={`/`}> ADD TODO </Link>
+          <Link to={`/todos`}> ALL TODOS</Link>
         </div>
         <hr />
-        <div>
-          <h3>Todos</h3>
+        <div className="todos-wrap">
+          <h3>ALL TODOS From DB :</h3>
           {!todos && todoState.isFetching && <p>Loading todos....</p>}
           {todos.length <= 0 && !todoState.isFetching && (
             <p>No Todos Available. Add A Todo to List here.</p>
           )}
           {todos && todos.length > 0 && !todoState.isFetching && (
-            <table style={{ border: '2px solid #2e8b57' }}>
+            <table>
               <thead>
                 <tr>
                   <th>Todo</th>
@@ -44,14 +46,14 @@ export default class Todos extends Component {
                 {todos.map((todo, i) => (
                   <tr key={i}>
                     <td>{todo.todoText}</td>
-                    <td style={{ border: '2px solid #2e8b57' }}>
+                    <td>
                       <button onClick={() => this.showEditModal(todo)}>
-                        edit
+                        EDIT TODO
                       </button>
                     </td>
-                    <td style={{ border: '2px solid #2e8b57' }}>
+                    <td>
                       <button onClick={() => this.showDeleteModal(todo)}>
-                        delete
+                        DELETE TODO
                       </button>
                     </td>
                     {/* viwe details */}

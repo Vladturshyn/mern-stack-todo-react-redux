@@ -16,25 +16,25 @@ export default class TodoEditForm extends Component {
     return (
       <div>
         <form id="EditTodoForm" onSubmit={this.submitEditTodo}>
-          <label> Text: </label>
-          <input
-            type="hidden"
-            defaultValue={this.props.todoData._id}
-            name="id"
-          />
+          <label> TodoText </label>
           <input
             name="text"
             defaultValue={this.props.todoData.todoText}
             type="text"
           />
           <br />
-          <label> Description: </label>
+          <label> TodoDesc: </label>
           <input
             name="name"
             defaultValue={this.props.todoData.todoDesc}
             type="text"
           />
           <br />
+          <input
+            type="hidden"
+            defaultValue={this.props.todoData._id}
+            name="id"
+          />
           <button type="submit">SUBMIT</button>
         </form>
       </div>

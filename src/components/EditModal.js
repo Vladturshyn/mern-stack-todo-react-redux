@@ -14,6 +14,7 @@ export default class EditModal extends Component {
         <Popup
           open={this.props.todoData.mappedState.showEditModal}
           onClose={this.closeEditModal.bind(this)}
+          className="Popup"
         >
           {close => (
             <div>
