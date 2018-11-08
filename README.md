@@ -4,3 +4,5 @@
 - react / reactjs-popup
 - redux / redux thunk / redux routing
 - simple layout scss
+
+- ![](https://media.giphy.com/media/8vtgh1s2dnTavl1mCI/giphy.gif)
