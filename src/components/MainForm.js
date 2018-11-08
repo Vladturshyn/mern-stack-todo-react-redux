@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
-//import ContainerMainForm from '../containers/ContainerMainForm';
-//import ContainerTodos from '../containers/ContainerTodos';
+import {Link} from 'react-router';
 
 class MainForm extends Component {
   onAdd = e => {
@@ -21,7 +19,8 @@ class MainForm extends Component {
     return (
       <div>
         <div>
-          <Link>ALL</Link>
+          <Link to={`/`}>Home </Link>
+          <Link to={`/todos`}> Todos</Link>
         </div>
         <h3> ToDo :</h3>
         <div>

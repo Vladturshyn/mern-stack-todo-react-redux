@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default class TodoById extends React.Component {
   componentDidMount() {
@@ -7,9 +8,13 @@ export default class TodoById extends React.Component {
 
   render() {
     const todoState = this.props.mappedState;
-    console.log(this.props.params.id);
     return (
       <div>
+        <div>
+          <Link to={`/`}>Home </Link>
+          <Link to={`/todos`}> Todos</Link>
+        </div>
+        <hr/>
         <h2>Todo Detail</h2>
         {!todoState.todo && todoState.isFetching && (
           <div>

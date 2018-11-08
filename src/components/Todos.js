@@ -19,6 +19,10 @@ export default class Todos extends Component {
     const todos = todoState.todos;
     return (
       <div>
+        <div>
+          <Link to={`/`}>Home </Link>
+          <Link to={`/todos`}> Todos</Link>
+        </div>
         <hr />
         <div>
           <h3>Todos</h3>
